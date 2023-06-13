@@ -32,6 +32,7 @@ parser.add_argument('--precision', type=int, default=16, help='precision')
 parser.add_argument('--lr_cycles', type=float, default=1, help='precision')
 parser.add_argument('--transformation_probability', type=float, default=0.5, help='precision')
 parser.add_argument('--checkpoint', type=str, default="None", help='checkpoint')
+parser.add_argument('--test_size', type=float, default=0.2, help='test_size')
 
 
 def to_onnx(model: ColorModule):
@@ -73,7 +74,8 @@ if __name__ == "__main__":
         [ToTensor(), Resize((args.resolution, args.resolution), antialias=True)])
 
     data_module = ColorDatamodule("./data/dataset_color", train_transformations,
-                                          valid_transformations, batch_size=args.batch_size, num_workers=6)
+                                          valid_transformations, batch_size=args.batch_size,
+                                  num_workers=6, test_size=args.test_size)
     data_module.setup()
     model = get_model(args.model)
     if args.checkpoint != "None":

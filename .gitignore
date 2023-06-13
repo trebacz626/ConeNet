@@ -161,3 +161,4 @@ cython_debug/
 /data/dataset_color/
 /data/dataset_YOLO/
 /checkpoints/
+/yolov7/

@@ -21,7 +21,13 @@ class ColorDatamodule(pl.LightningDataModule):
 
     def setup(self, stage=None):
         # split data into train and validation
-        self.train_data, self.valid_data, self.train_labels, self.valid_labels = train_test_split(self.data, self.labels, test_size=self.test_size, random_state=42)
+        if self.test_size > 0:
+            self.train_data, self.valid_data, self.train_labels, self.valid_labels = train_test_split(self.data, self.labels, test_size=self.test_size, random_state=42)
+        else:
+            self.train_data = self.data
+            self.valid_data = self.data
+            self.train_labels = self.labels
+            self.valid_labels = self.labels
 
     def train_dataloader(self):
         return torch.utils.data.DataLoader(

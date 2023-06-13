@@ -1,0 +1,8 @@
+train: "../data/dataset_YOLO/train"
+test: "../data/dataset_YOLO/val"
+val: "../data/dataset_YOLO/val"
+#Classes
+nc: 3 # replace according to your number of classes
+#classes names
+#replace all class names list with your classes names
+names: ["orange", "yellow", "blue"]
